@@ -44,7 +44,7 @@ export async function PATCH(
     const { name, billboardId } = body
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized patch categories userId', { status: 401 })
     }
 
     if (!name) {
@@ -67,7 +67,7 @@ export async function PATCH(
     })
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized patch categories storeByUserId', { status: 403 })
     }
 
     const category = await prismadb.category.updateMany({
@@ -101,7 +101,7 @@ export async function DELETE(
     const { userId } = auth()
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized delete categories userId', { status: 401 })
     }
 
     if (!params.categoryId) {
@@ -116,7 +116,7 @@ export async function DELETE(
     })
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized delete categories storeByUserId', { status: 403 })
     }
 
     const category = await prismadb.category.deleteMany({

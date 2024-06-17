@@ -56,7 +56,7 @@ export async function PATCH(
     } = body
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized patch product userId', { status: 401 })
     }
 
     if (!name) {
@@ -95,7 +95,7 @@ export async function PATCH(
     })
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized patch product storeByUserId', { status: 401 })
     }
 
     await prismadb.product.update({
@@ -150,7 +150,7 @@ export async function DELETE(
     const { userId } = auth()
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized delete product storeByUserId', { status: 401 })
     }
 
     if (!params.productId) {
@@ -165,7 +165,7 @@ export async function DELETE(
     })
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized delete product storeByUserId', { status: 401 })
     }
 
     const product = await prismadb.product.deleteMany({

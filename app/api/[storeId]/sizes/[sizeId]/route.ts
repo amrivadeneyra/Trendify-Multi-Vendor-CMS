@@ -41,7 +41,7 @@ export async function PATCH(
     const { name, value } = body
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized patch size userId', { status: 401 })
     }
 
     if (!name) {
@@ -64,7 +64,7 @@ export async function PATCH(
     })
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized patch size storeByUserId', { status: 401 })
     }
 
     const size = await prismadb.size.updateMany({
@@ -98,7 +98,7 @@ export async function DELETE(
     const { userId } = auth()
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized delete size userId', { status: 401 })
     }
 
     if (!params.sizeId) {
@@ -113,7 +113,7 @@ export async function DELETE(
     })
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized delete size storeByUserId', { status: 401 })
     }
 
     const size = await prismadb.size.deleteMany({

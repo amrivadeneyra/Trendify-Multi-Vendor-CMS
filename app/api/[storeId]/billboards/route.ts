@@ -13,7 +13,7 @@ export async function POST(
     const { label, imageUrl } = body
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized delete billaboards userId', { status: 401 })
     }
 
     if (!label) {
@@ -36,7 +36,7 @@ export async function POST(
     })
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 403 })
+      return new NextResponse('Unauthorized post billaboards storeByUserId', { status: 403 })
     }
 
     const billboard = await prismadb.billboard.create({

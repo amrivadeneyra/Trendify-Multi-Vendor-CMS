@@ -41,7 +41,7 @@ export async function PATCH(
     const { name, value } = body
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized patch colors userId', { status: 401 })
     }
 
     if (!name) {
@@ -64,7 +64,7 @@ export async function PATCH(
     })
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized patch colors storeByUserId', { status: 403 })
     }
 
     const color = await prismadb.color.updateMany({
@@ -98,7 +98,7 @@ export async function DELETE(
     const { userId } = auth()
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized delete colors userId', { status: 401 })
     }
 
     if (!params.colorId) {
@@ -113,7 +113,7 @@ export async function DELETE(
     })
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized delete colors storeByUserId', { status: 403 })
     }
 
     const color = await prismadb.color.deleteMany({

@@ -22,7 +22,7 @@ export async function POST(
     } = body
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized post products userId', { status: 401 })
     }
 
     if (!name) {
@@ -61,7 +61,7 @@ export async function POST(
     })
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized post products storeByUserId', { status: 401 })
     }
 
     const product = await prismadb.product.create({

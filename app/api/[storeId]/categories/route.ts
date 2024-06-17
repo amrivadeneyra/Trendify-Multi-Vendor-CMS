@@ -13,7 +13,7 @@ export async function POST(
     const { name, billboardId } = body
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized post categories userId', { status: 401 })
     }
 
     if (!name) {
@@ -36,7 +36,7 @@ export async function POST(
     })
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 403 })
+      return new NextResponse('Unauthorized post categories storeByUserId', { status: 403 })
     }
 
     const category = await prismadb.category.create({

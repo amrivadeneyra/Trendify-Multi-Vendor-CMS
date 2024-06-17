@@ -41,7 +41,7 @@ export async function PATCH(
     const { label, imageUrl } = body
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized patch billaboards userId', { status: 401 })
     }
 
     if (!label) {
@@ -64,7 +64,7 @@ export async function PATCH(
     })
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 403 })
+      return new NextResponse('Unauthorized patch billaboards storeByUserId', { status: 403 })
     }
 
     const billboard = await prismadb.billboard.updateMany({
@@ -98,7 +98,7 @@ export async function DELETE(
     const { userId } = auth()
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized delete billaboards userId', { status: 401 })
     }
 
     if (!params.billboardId) {
@@ -113,7 +113,7 @@ export async function DELETE(
     })
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 403 })
+      return new NextResponse('Unauthorized delete billaboards storeByUserId', { status: 403 })
     }
 
     const billboard = await prismadb.billboard.deleteMany({

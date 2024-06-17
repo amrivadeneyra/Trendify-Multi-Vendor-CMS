@@ -13,7 +13,7 @@ export async function PATCH(
     const { name } = body
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized patch storeId', { status: 401 })
     }
 
     if (!name) {
@@ -55,7 +55,7 @@ export async function DELETE(
     const { userId } = auth()
 
     if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 })
+      return new NextResponse('Unauthorized delete storeId', { status: 401 })
     }
 
     if (!params.storeId) {
