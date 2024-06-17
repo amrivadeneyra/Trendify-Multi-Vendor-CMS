@@ -1,13 +1,14 @@
 'use client'
 
 import { useEffect } from 'react';
+
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 
 interface OverviewProps {
   data: any[]
 }
 
-const suppressReactWarnings = () => {
+const useSuppressReactWarnings = () => {
   useEffect(() => {
     const originalError = console.error;
     console.error = (...args) => {
@@ -24,7 +25,7 @@ const suppressReactWarnings = () => {
 };
 
 export const Overview: React.FC<OverviewProps> = ({ data }) => {
-  suppressReactWarnings();
+  useSuppressReactWarnings();
   return (
     <ResponsiveContainer width="100%" height={350}>
       <BarChart data={data}>
