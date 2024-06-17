@@ -22,8 +22,8 @@ import { Modal } from '@/components/ui/modal'
 import { useStoreModal } from '@/hooks/use-store-modal'
 
 const formSchema = z.object({
-  name: z.string().min(2).max(50),
-})
+  name: z.string().min(1),
+});
 
 type FormSchemaProps = z.infer<typeof formSchema>
 
@@ -31,20 +31,18 @@ export const StoreModal = () => {
   const storeModal = useStoreModal()
   const [isLoading, setIsLoading] = useState(false)
 
-  const form = useForm<FormSchemaProps>({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
     },
   })
 
-  const onSubmit = async (data: FormSchemaProps) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      setIsLoading(true)
-
-      const response = await axios.post('/api/stores', data)
-
-      window.location.assign(`/${response.data.id}`)
+      setIsLoading(true);
+      const response = await axios.post("/api/stores", values);
+      window.location.assign(`/${response.data.id}`);
     } catch (error) {
       toast.error("Something went wrong, we're looking into it!")
     } finally {
@@ -71,9 +69,9 @@ export const StoreModal = () => {
 
                   <FormControl>
                     <Input
+                      disabled={isLoading}
                       {...field}
                       placeholder="Store Name"
-                      disabled={isLoading}
                     />
                   </FormControl>
 
@@ -85,7 +83,7 @@ export const StoreModal = () => {
             />
 
             <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-              <Button variant="outline" onClick={storeModal.onClose}>
+              <Button disabled={isLoading} variant="outline" onClick={storeModal.onClose}>
                 Cancel
               </Button>
 

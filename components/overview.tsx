@@ -8,7 +8,7 @@ interface OverviewProps {
 
 export const Overview: React.FC<OverviewProps> = ({ data }) => {
   return (
-    <ResponsiveContainer width="100%" height={350}>
+    <ResponsiveContainer width="100%" height={3350}>
       <BarChart data={data}>
         <XAxis
           dataKey="name"
@@ -19,6 +19,7 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
         />
 
         <YAxis
+          dataKey="name"
           stroke="#888888"
           fontSize={12}
           tickLine={false}
@@ -26,7 +27,7 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
           tickFormatter={(value) => `$${value}`}
         />
 
-        <Bar dataKey="total" fill="#8884d8" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="total" fill="#3498db" radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   )
